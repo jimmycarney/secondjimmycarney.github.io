@@ -22,3 +22,4 @@ Hosting a site on github:
 >cd into folder where you want to store the project
 >run "git clone https://github.com/<username>/<username>.github.io"
 >cd into <username>.github.io (index.html is the file that will be hosted)
+>add, commit, and push git changes (may have to commit more than once for the site to work)
