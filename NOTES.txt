@@ -3,3 +3,22 @@ Creating local server for development:
 >cd into directory containing index.html file
 >run "py -m SimpleHTTPServer 8000"
 >open localhost:8000 in a browser
+
+Creating new git repository:
+>Create repository on github website
+>open terminal
+>cd into folder where you want to store the project
+>run "git clone https://github.com/<username>/<repository>"
+>cd into <repository> (index.html is the file that will be hosted)
+
+Add, commit, and push git changes:
+>git add --all
+>git commit -m "Initial commit"
+>git push -u origin master
+
+Hosting a site on github:
+>Create a new repository on github named <username>.github.io
+>>open terminal
+>cd into folder where you want to store the project
+>run "git clone https://github.com/<username>/<username>.github.io"
+>cd into <username>.github.io (index.html is the file that will be hosted)
