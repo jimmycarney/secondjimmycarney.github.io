@@ -1,0 +1,5 @@
+Creating local server for development:
+>open terminal
+>cd into directory containing index.html file
+>run "py -m SimpleHTTPServer 8000"
+>open localhost:8000 in a browser
