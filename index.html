@@ -11,7 +11,8 @@
     		var xmlHttp = new XMLHttpRequest();
     		xmlHttp.onreadystatechange = function() {
     			if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-    				alert(xmlHttp.responseText);
+    				/*alert(xmlHttp.responseText);*/
+    				getJSON(xmlHttp.responseText);
     			}
     		}
     		xmlHttp.open("GET", url, true);
@@ -22,7 +23,7 @@
     	//the data in JSON format
     	function getJSON(response) {
     		var jData = JSON.parse(response);
-    		alert(jData);
+    		alert(jData[0].Category + ": " + jData[0].arrest_count);
     	}
     </script>
 </head>
