@@ -6,16 +6,18 @@
     <link rel="stylesheet" href="style.css" />
     <script type="text/javascript">
     	//httpGetAsync takes in a url as a string and handles
-    	//the response from the http request
+    	//the response from the http request (calls response function)
     	function httpGetAsync(url) {
     		var xmlHttp = new XMLHttpRequest();
+    		var team = document.getElementById("search-input").value;
     		xmlHttp.onreadystatechange = function() {
     			if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
     				/*alert(xmlHttp.responseText);*/
-    				getJSON(xmlHttp.responseText);
+    				var jsonData = getJSON(xmlHttp.responseText);
+    				handleTeamTopPlayers(jsonData); 
     			}
     		}
-    		xmlHttp.open("GET", url, true);
+    		xmlHttp.open("GET", url + team, true);
     		xmlHttp.send(null);
     	}
 
@@ -23,7 +25,19 @@
     	//the data in JSON format
     	function getJSON(response) {
     		var jData = JSON.parse(response);
-    		alert(jData[0].Category + ": " + jData[0].arrest_count);
+    		return jData
+    	}
+
+    	//handleTeamTopPlayers takes in jsonData for players and their
+    	//arrest count and displays this data on the front end 
+    	function handleTeamTopPlayers(jsonData) {
+    		for (var i = 0; i < jsonData.length; i++) {
+    			var player = document.createElement("p");
+    			var playerNode = document.createTextNode(jsonData[i].Name + ": " 
+    													+ jsonData[i].arrest_count);
+    			player.appendChild(playerNode);
+    			document.getElementById("results").appendChild(player);
+    		}
     	}
     </script>
 </head>
@@ -31,8 +45,10 @@
 
 	<div class="rectangle">
 		<div class="center-input">
-			<input type="text" value="Please enter any word">
-			<input type="submit" value="Submit" onclick="httpGetAsync('https://www.nflArrest.com/api/v1/crime')">
+			<input id="search-input" type="text" value="Please enter any word">
+			<input type="submit" value="Search" onclick="httpGetAsync('https://www.nflArrest.com/api/v1/team/topPlayers/')">
+		</div>
+		<div id="results">
 		</div>
 	</div>
 
