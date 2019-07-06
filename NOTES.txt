@@ -1,7 +1,7 @@
 Creating local server for development:
 >open terminal
 >cd into directory containing index.html file
->run "py -m SimpleHTTPServer 8000"
+>run "py -m SimpleHTTPServer 8000" or "python -m SimpleHTTPServer 8000"
 >open localhost:8000 in a browser
 
 Creating new git repository:
@@ -24,3 +24,5 @@ Hosting a site on github:
 >cd into <username>.github.io (index.html is the file that will be hosted)
 >add, commit, and push git changes
 	>have to commit files more than once to get them to actually work
+
+Using an API:
