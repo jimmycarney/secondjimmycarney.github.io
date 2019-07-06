@@ -12,6 +12,7 @@
     	//httpGetAsync takes in a url as a string and handles
     	//the response from the http request
     	function httpGetAsync(url) {
+    		alert("getting data...");
     		var xmlHttp = new XMLHttpRequest();
     		xmlHttp.onreadystatechange = function() {
     			if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
