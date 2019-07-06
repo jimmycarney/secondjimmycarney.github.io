@@ -5,14 +5,9 @@
     <title>Test Website</title>
     <link rel="stylesheet" href="style.css" />
     <script type="text/javascript">
-    	function test() {
-    		alert("test");
-    	}
-
     	//httpGetAsync takes in a url as a string and handles
     	//the response from the http request
     	function httpGetAsync(url) {
-    		alert("getting data...");
     		var xmlHttp = new XMLHttpRequest();
     		xmlHttp.onreadystatechange = function() {
     			if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
@@ -22,6 +17,7 @@
     		xmlHttp.open("GET", url, true);
     		xmlHttp.send(null);
     	}
+
     	//getJSON takes in the response text from an HTTP request and returns
     	//the data in JSON format
     	function getJSON(response) {
@@ -35,7 +31,7 @@
 	<div class="rectangle">
 		<div class="center-input">
 			<input type="text" value="Please enter any word">
-			<input type="submit" value="Submit" onclick="httpGetAsync('https://stats.nba.com/stats/leagueleaders')">
+			<input type="submit" value="Submit" onclick="httpGetAsync('https://www.nflArrest.com/api/v1/crime')">
 		</div>
 	</div>
 

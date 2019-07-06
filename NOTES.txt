@@ -26,3 +26,9 @@ Hosting a site on github:
 	>have to commit files more than once to get them to actually work
 
 Using an API:
+>Create an http request object (new XMLHttpRequest())
+>Use the http request object to perform a GET request on the desired URL
+	>This doesn't work for some sites because they restrict access to APIs
+		>Results in access control error
+>See the httpGetAsync function for an example
+
