@@ -9,23 +9,15 @@
     	//the response from the http request (calls response function)
     	function httpGetAsync(url) {
     		var xmlHttp = new XMLHttpRequest();
-    		var team = document.getElementById("search-input").value;
+    		var search_term = document.getElementById("search-input").value;
     		xmlHttp.onreadystatechange = function() {
     			if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-    				/*alert(xmlHttp.responseText);*/
-    				var jsonData = getJSON(xmlHttp.responseText);
-    				handleTeamTopPlayers(jsonData); 
+    				alert(xmlHttp.responseText);
+    				/*handleTeamTopPlayers(JSON.parse(xmlHttp.responseText));*/ 
     			}
     		}
-    		xmlHttp.open("GET", url + team, true);
+    		xmlHttp.open("GET", url + search_term, true);
     		xmlHttp.send(null);
-    	}
-
-    	//getJSON takes in the response text from an HTTP request and returns
-    	//the data in JSON format
-    	function getJSON(response) {
-    		var jData = JSON.parse(response);
-    		return jData
     	}
 
     	//handleTeamTopPlayers takes in jsonData for players and their
@@ -47,6 +39,7 @@
 		<div class="center-input">
 			<input id="search-input" type="text" value="Please enter any word">
 			<input type="submit" value="Search" onclick="httpGetAsync('https://www.nflArrest.com/api/v1/team/topPlayers/')">
+			<input type="submit" value="Jobs" onclick="httpGetAsync('https://jobs.github.com/positions.json?description=')">
 		</div>
 		<div id="results">
 		</div>
