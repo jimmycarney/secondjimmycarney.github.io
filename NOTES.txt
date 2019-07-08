@@ -37,6 +37,15 @@ Using an API:
 		team - Team_name, City_name, Team_Conference_Division, arrest_count
 		team/topPlayers/<team id (i.e. PHI)> - Name, arrest_count
 	
+	EPISODATE API endpoints and properties:
+		https://www.episodate.com/api/
+		most-popular - page, pages, (in tv_shows list) name, status, 
+						image_thumbnail_path, network
+		search?q=<showname> - page, pages, (in tv_shows list) name, status, 
+						image_thumbnail_path, network
+		show-details?q=<showname> - name, description, episodes
+
+
 	(CORS error with localhost but testing to see if that's true for the github page)
 	Github jobs endpoints and properties:
 		https://jobs.github.com/positions.json?

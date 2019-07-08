@@ -10,14 +10,20 @@
     	function httpGetAsync(url) {
     		var xmlHttp = new XMLHttpRequest();
     		var search_term = document.getElementById("search-input").value;
+    		search_term = search_term.replace(/\s+/g, '-').toLowerCase();
     		xmlHttp.onreadystatechange = function() {
     			if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-    				/*alert(xmlHttp.responseText);*/
+    				//test to see if API call worked
+    				alert(xmlHttp.responseText);
+
+    				//function to display NFL arrest data (url + search_term below)
     				/*handleTeamTopPlayers(JSON.parse(xmlHttp.responseText));*/
-    				handleAPOD(JSON.parse(xmlHttp.responseText));
+
+    				//function to display astronomy picture of the day (url only)
+    				/*handleAPOD(JSON.parse(xmlHttp.responseText));*/
     			}
     		}
-    		xmlHttp.open("GET", url, true);
+    		xmlHttp.open("GET", url + search_term, true);
     		xmlHttp.send(null);
     	}
 
@@ -46,8 +52,9 @@
 	<div class="rectangle">
 		<div class="center-input">
 			<input id="search-input" type="text" value="Please enter any word">
-			<input type="submit" value="Search" onclick="httpGetAsync('https://www.nflArrest.com/api/v1/team/topPlayers/')">
-			<input type="submit" value="Space Picture" onclick="httpGetAsync('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY')">
+			<!-- <input type="submit" value="Search" onclick="httpGetAsync('https://www.nflArrest.com/api/v1/team/topPlayers/')"> -->
+			<!-- <input type="submit" value="Space Picture" onclick="httpGetAsync('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY')"> -->
+			<input type="submit" value="TV" onclick="httpGetAsync('https://www.episodate.com/api/show-details?q=')">
 		</div>
 		<div id="results">
 		</div>
