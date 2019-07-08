@@ -13,6 +13,7 @@
     		xmlHttp.onreadystatechange = function() {
     			if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
     				alert(xmlHttp.responseText);
+    				alert("test");
     				/*handleTeamTopPlayers(JSON.parse(xmlHttp.responseText));*/ 
     			}
     		}

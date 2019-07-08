@@ -36,6 +36,8 @@ Using an API:
 		crime - Category, arrest_count
 		team - Team_name, City_name, Team_Conference_Division, arrest_count
 		team/topPlayers/<team id (i.e. PHI)> - Name, arrest_count
+	
+	(CORS error with localhost but testing to see if that's true for the github page)
 	Github jobs endpoints and properties:
 		https://jobs.github.com/positions.json?
 		description=<any word> - returns all with description containing term
