@@ -12,12 +12,12 @@
     		var search_term = document.getElementById("search-input").value;
     		xmlHttp.onreadystatechange = function() {
     			if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-    				alert(xmlHttp.responseText);
-    				alert("test");
-    				/*handleTeamTopPlayers(JSON.parse(xmlHttp.responseText));*/ 
+    				/*alert(xmlHttp.responseText);*/
+    				/*handleTeamTopPlayers(JSON.parse(xmlHttp.responseText));*/
+    				handleAPOD(JSON.parse(xmlHttp.responseText));
     			}
     		}
-    		xmlHttp.open("GET", url + search_term, true);
+    		xmlHttp.open("GET", url, true);
     		xmlHttp.send(null);
     	}
 
@@ -32,6 +32,13 @@
     			document.getElementById("results").appendChild(player);
     		}
     	}
+
+
+    	function handleAPOD(jsonData) {
+			var picture = document.createElement("IMG");
+			picture.src = jsonData.url;
+			document.getElementById("results").appendChild(picture);
+    	}
     </script>
 </head>
 <body>
@@ -40,7 +47,7 @@
 		<div class="center-input">
 			<input id="search-input" type="text" value="Please enter any word">
 			<input type="submit" value="Search" onclick="httpGetAsync('https://www.nflArrest.com/api/v1/team/topPlayers/')">
-			<input type="submit" value="Jobs" onclick="httpGetAsync('https://jobs.github.com/positions.json?description=')">
+			<input type="submit" value="Space Picture" onclick="httpGetAsync('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY')">
 		</div>
 		<div id="results">
 		</div>
