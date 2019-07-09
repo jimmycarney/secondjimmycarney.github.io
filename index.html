@@ -5,6 +5,7 @@
     <title>Test Website</title>
     <link rel="stylesheet" href="style.css" />
     <script type="text/javascript">
+        var page = 1;
     	//httpGetAsync takes in a url as a string and handles
     	//the response from the http request (calls response function)
     	function httpGetAsync(url, info) {
@@ -14,11 +15,12 @@
     		xmlHttp.onreadystatechange = function() {
     			if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
     				//test to see if API call worked
-    				if (info == 'most-popular') {
+    				if (info == 'most-popular' || info == 'most-popular++' 
+                            || info == 'most-popular--') {
     					//alert(xmlHttp.responseText);
     					handleMostPopularShows(JSON.parse(xmlHttp.responseText));
     				}
-    				else if (info == 'test') {
+    				else if (info == 'show-details') {
     					alert(xmlHttp.responseText);
     				}
 
@@ -32,7 +34,15 @@
     		if (info == 'most-popular') {
     			xmlHttp.open("GET", url, true);
     		}
-    		else if (info == 'test') {
+            else if (info == 'most-popular++') {
+                page++;
+                xmlHttp.open("GET", url + page, true);
+            }
+            else if (info == 'most-popular--') {
+                page--;
+                xmlHttp.open("GET", url + page, true);
+            }
+    		else if (info == 'show-details') {
     			xmlHttp.open("GET", url + search_term, true);
     		}
     		
@@ -46,7 +56,8 @@
     	}
 
     	function handleMostPopularShows(jsonData) {
-    		for (var i = 0; i < jsonData.tv_shows.length; i++) {
+    		document.getElementById("shows").innerHTML = "";
+            for (var i = 0; i < jsonData.tv_shows.length; i++) {
     			//create div for show and header for show name
     			var showDiv = document.createElement("div");
     			var showName = document.createElement("p");
@@ -68,6 +79,11 @@
     			showDiv.style.width = "200px";
     			showDiv.style.margin = "auto 0";
     			showDiv.style.marginBottom = "30px";
+                showDiv.style.cursor = "pointer";
+
+                showDiv.onclick = function() {
+                    httpGetAsync('https://www.episodate.com/api/show-details?q=', 'show-details');
+                }
 
     			document.getElementById("shows").appendChild(showDiv);
     		}
@@ -98,11 +114,13 @@
 			<input id="search-input" type="text" value="Search for a show...">
 			<!-- <input type="submit" value="Search" onclick="httpGetAsync('https://www.nflArrest.com/api/v1/team/topPlayers/')"> -->
 			<!-- <input type="submit" value="Space Picture" onclick="httpGetAsync('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY')"> -->
-			<input type="submit" value="TV" onclick="httpGetAsync('https://www.episodate.com/api/show-details?q=', 'test')">
+			<input type="submit" value="TV" onclick="httpGetAsync('https://www.episodate.com/api/show-details?q=', 'show-details')">
 		</div>
 	<div id="shows">
 	</div>
 	<div id="results">
 	</div>
+    <input type="submit" value="<--" onclick="httpGetAsync('https://www.episodate.com/api/most-popular?page=', 'most-popular--')">
+    <input type="submit" value="-->" onclick="httpGetAsync('https://www.episodate.com/api/most-popular?page=', 'most-popular++')">
 </body>
 </html>
