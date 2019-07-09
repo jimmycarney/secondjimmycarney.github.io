@@ -7,14 +7,16 @@
     <script type="text/javascript">
     	//httpGetAsync takes in a url as a string and handles
     	//the response from the http request (calls response function)
-    	function httpGetAsync(url) {
+    	function httpGetAsync(url, info) {
     		var xmlHttp = new XMLHttpRequest();
     		var search_term = document.getElementById("search-input").value;
     		search_term = search_term.replace(/\s+/g, '-').toLowerCase();
     		xmlHttp.onreadystatechange = function() {
     			if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
     				//test to see if API call worked
-    				alert(xmlHttp.responseText);
+    				if (info == 'most-popular') {
+    					alert(xmlHttp.responseText);
+    				}
 
     				//function to display NFL arrest data (url + search_term below)
     				/*handleTeamTopPlayers(JSON.parse(xmlHttp.responseText));*/
@@ -23,8 +25,12 @@
     				/*handleAPOD(JSON.parse(xmlHttp.responseText));*/
     			}
     		}
-    		xmlHttp.open("GET", url + search_term, true);
+    		xmlHttp.open("GET", url, true);
     		xmlHttp.send(null);
+    	}
+
+    	function loadShows() {
+    		httpGetAsync('https://www.episodate.com/api/most-popular', 'most-popular');
     	}
 
     	//handleTeamTopPlayers takes in jsonData for players and their
@@ -47,8 +53,7 @@
     	}
     </script>
 </head>
-<body>
-
+<body onload="loadShows()">
 	<div class="rectangle">
 		<div class="center-input">
 			<input id="search-input" type="text" value="Please enter any word">
